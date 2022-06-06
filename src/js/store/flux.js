@@ -39,12 +39,13 @@ const getState = ({ getStore, getActions, setStore }) => {
 
 			},
 			getMoreInfo: (url,indice) => {
-				fetch(url).then( resp => resp.json() ).then(data => setStore({"planet": data.result}));
+				fetch(url).then( resp => resp.json() ).then(data =>  {
 				let newPlanets = store.planets;
 				newPlanets[indice] .properties = data.result.properties;
 				setStore({"planets": newPlanets});
+			})
 
-			},
+		 },
 			changeColor: (index, color) => {
 				//get the store
 				const store = getStore();
