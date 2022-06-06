@@ -36,6 +36,10 @@ const getState = ({ getStore, getActions, setStore }) => {
 			setStore({"favorites": newFavorites})//guarda en favoritos
 
 			},
+			getMoreInfo: (url) => {
+				fetch(url).then( resp => resp.json() ).then(data => setStore({"planet": data.result}))
+
+			},
 			changeColor: (index, color) => {
 				//get the store
 				const store = getStore();
