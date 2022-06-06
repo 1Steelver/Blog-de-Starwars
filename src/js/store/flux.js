@@ -12,7 +12,9 @@ const getState = ({ getStore, getActions, setStore }) => {
 					background: "white",
 					initial: "white"
 				}
-			]
+			],
+			favorites: [],//guarda favoritos
+			planets:[]
 		},
 		actions: {
 			// Use getActions to call a function within a fuction
@@ -23,6 +25,16 @@ const getState = ({ getStore, getActions, setStore }) => {
 				/**
 					fetch().then().then(data => setStore({ "foo": data.bar }))
 				*/
+			},
+			addFavorites: (item)=> {//el item es un objeto{}
+				let favorites = store.favorites;//
+				favorites.push(item)
+				setStore({"favorites": item})//agrega a favoritos(ojo superpone datos)
+			},
+			deleteFavorites: (uid) => {
+			let newFavorites = store.favorites.filter((item)=>item.uid !== uid)//muestra una lista de eementos diferentes("!==") al seleccionado
+			setStore({"favorites": newFavorites})//guarda en favoritos
+
 			},
 			changeColor: (index, color) => {
 				//get the store
