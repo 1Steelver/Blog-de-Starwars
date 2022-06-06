@@ -1,3 +1,5 @@
+import { DelegatedPlugin } from "webpack";
+
 const getState = ({ getStore, getActions, setStore }) => {
 	return {
 		store: {
@@ -36,8 +38,11 @@ const getState = ({ getStore, getActions, setStore }) => {
 			setStore({"favorites": newFavorites})//guarda en favoritos
 
 			},
-			getMoreInfo: (url) => {
-				fetch(url).then( resp => resp.json() ).then(data => setStore({"planet": data.result}))
+			getMoreInfo: (url,indice) => {
+				fetch(url).then( resp => resp.json() ).then(data => setStore({"planet": data.result}));
+				let newPlanets = store.planets;
+				newPlanets[indice] .properties = data.result.properties;
+				setStore({"planets": newPlanets});
 
 			},
 			changeColor: (index, color) => {
