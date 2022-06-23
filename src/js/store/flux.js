@@ -4,8 +4,8 @@ const getState = ({ getStore, getActions, setStore }) => {
 		characters: [],
 		planets: [],
 		hola: "hola",
-		planet: [],
-		character: [],
+		planet: null,
+		character: null,
 		imgCharacters: [
 		  {
 			url: "https://i.pinimg.com/originals/a1/93/e9/a193e9ec775e428f2ed2aabead1bed65.gif",
@@ -89,15 +89,25 @@ const getState = ({ getStore, getActions, setStore }) => {
 		},
 		verPersona: (id) => {
 		  console.log(id)
-		  let link = `https://www.swapi.tech/api/people/1`
+		  let link = `https://www.swapi.tech/api/people/${id}`
   
 		  fetch(link)
 			.then((resp) => resp.json())
-			.then((resp) => setStore({ character: resp.results }))
+			.then((resp) => setStore({ character: resp.result }))
 			.catch((error) => console.log(error));
 		},
+		verPlaneta: (id) => {
+		  console.log(id);
+		  let link = `https://www.swapi.tech/api/planets/${id}`
+  
+		  fetch(link)
+		  .then((resp) => resp.json())
+		  .then((resp) => setStore({ planet: resp.result }))
+		  .catch((error) => console.log(error))
+		}, 
 	  },
 	};
   };
   
   export default getState;
+  

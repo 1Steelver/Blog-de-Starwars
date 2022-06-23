@@ -12,9 +12,9 @@ export default function Card({ name, url, typeCard, id }) {
             Some quick example text to build on the card title and make up the
             bulk of the card's content.
           </p>
-          <Link to={typeCard === "characters" ? `/people/${id}` : "/planets"}>
+          <Link to={typeCard === "characters" ? `/people/${id}` : `/planet/${id}`}>
             <span className="btn btn-primary btn-lg" href="#" role="button">
-              Learn more
+              Learn more!
             </span>
           </Link>
         </div>
