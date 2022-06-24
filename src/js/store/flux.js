@@ -3,6 +3,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 	  store: {
 		characters: [],
 		planets: [],
+		favoritos: [],
 		hola: "hola",
 		planet: null,
 		character: null,
@@ -105,6 +106,19 @@ const getState = ({ getStore, getActions, setStore }) => {
 		  .then((resp) => setStore({ planet: resp.result }))
 		  .catch((error) => console.log(error))
 		}, 
+		addFav: (item) => {
+			/**let favoritos = store.favoritos;**/
+			//favoritos.push(item)
+			const store = getStore();
+			const nFavorito = store.favoritos.concat(item);
+			console.log(getStore());
+			setStore({ favoritos: nFavorito });
+		  },
+		  deleteFav: (itemDelete) => {
+			const store = getStore();
+			let newFav = store.favoritos.filter((item) => item !== itemDelete);
+			setStore({ favoritos: newFav });
+		  },
 	  },
 	};
   };
