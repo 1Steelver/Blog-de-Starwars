@@ -7,9 +7,10 @@ export const Home = () => {
   const { store, actions } = useContext(Context);
 
   return (
-    <div className="container testimonial-group">
-      <div className="row text-center">
-      <h1 className="text-danger">Characters</h1>
+    
+    <div className="container testimonial-group"> 
+        <h1 className="text-danger">Characters</h1> 
+      <div className="row text-center">    
         {store.people.map((item, index) => (
           <div className="col-sm-6 card-container" key={index}>
             <Cards
@@ -24,9 +25,8 @@ export const Home = () => {
           </div>
         ))}
       </div>
-
+      <h1 className="text-danger">Planets</h1>   
       <div className="row text-center mt-5">
-        <h1 className="text-danger">Planets</h1>
         {store.planets.map((item, index) => (
           <div className="col-sm-6 card-container" key={index}>
             <Cards

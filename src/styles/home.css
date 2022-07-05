@@ -1,8 +1,11 @@
+
+
 .testimonial-group > .row {
     overflow-x: auto;
     display: flex;
    flex-wrap: nowrap;
     text-overflow: ellipsis;
+
   }
   .testimonial-group > .row > .col-xs-4 {
     display: inline-block;
