@@ -1,45 +1,45 @@
-import React, { useState, useContext } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import "../../styles/home.css";
-import Card from "../component/Card";
+import { Cards } from "../component/cards";
 import { Context } from "../store/appContext";
 
 export const Home = () => {
   const { store, actions } = useContext(Context);
-  console.log(store.characters);
-  //actions.verPersona(id)
+
   return (
-    <div className="mt-5 container">
-      <div className="overflow-x">
-        <h1 className="text-danger">Characters</h1>
-        <div className=" d-flex">
-          {store.characters.map((element, index) => {
-            return (
-              <Card
-                key={element.uid}
-                typeCard="characters"
-                name={element.name}
-                id={element.uid}
-                url={store.imgCharacters[index].url}
-                className="col-3"
-              />
-            );
-          })}
-        </div>
+    <div className="container testimonial-group">
+      <div className="row text-center">
+      <h1 className="text-danger">Characters</h1>
+        {store.people.map((item, index) => (
+          <div className="col-sm-6 card-container" key={index}>
+            <Cards
+              url={item.url}
+              indice={index}
+              properties={item.properties}
+              title={item.name}
+              uid={item.uid}
+              charaInfo={true}
+              isFavorite={false}
+            ></Cards>
+          </div>
+        ))}
       </div>
-      <h1 className="text-danger">Planets</h1>
-      <div className=" d-flex">
-        {store.planets.map((element, index) => {
-          return (
-            <Card
-              key={element.uid}
-              typeCard="planets"
-              name={element.name}
-              id={element.uid}
-              url={store.imgPlanets[index].url}
-              className="col-3"
-            />
-          );
-        })}
+
+      <div className="row text-center mt-5">
+        <h1 className="text-danger">Planets</h1>
+        {store.planets.map((item, index) => (
+          <div className="col-sm-6 card-container" key={index}>
+            <Cards
+              url={item.url}
+              indice={index}
+              properties={item.properties}
+              title={item.name}
+              uid={item.uid}
+              planetInfo={true}
+              isFavorite={false}
+            ></Cards>
+          </div>
+        ))}
       </div>
     </div>
   );

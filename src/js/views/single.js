@@ -6,9 +6,23 @@ import { Context } from "../store/appContext";
 export const Single = props => {
 	const { store, actions } = useContext(Context);
 	const params = useParams();
+	console.log('ACTIONS')
+
+	const pepeNumber = parseInt(params.pepe);
+
+	useEffect( ()=>{
+		actions.loadSomeData();
+		actions.cargarConParams(5);
+	} , [] )
+
 	return (
 		<div className="jumbotron">
-			<h1 className="display-4">This will show the demo element: {store.demo[params.theid].title}</h1>
+
+			{ pepeNumber >= store.demo.length  && pepeNumber < 0
+				? (<h1>Planeta no encontrado</h1>) 
+				: (<h1 className="display-4">This will show the demo element: {store.demo[pepeNumber].title}</h1>)
+			}
+			
 
 			<hr className="my-4" />
 
@@ -17,6 +31,10 @@ export const Single = props => {
 					Back home
 				</span>
 			</Link>
+			{ store.planets.map( (item,index)=>(
+				<p key={index}>{item.url}</p>
+			) ) }
+
 		</div>
 	);
 };
